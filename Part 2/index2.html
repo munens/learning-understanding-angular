@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--section 1-4: lecture 17 -->
+<html lang="en-us" ng-app="app">
+    <!--This tells angular which part of the view that the application lives. 
+        Angular looks for the value of app that is set to 'app', just like above that is defined in the angular.module('app', []) in app.js-->
+<head>
+    <title>Angular tutorial</title>
+    <script src="https://code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+    <!-- More services can be added here:
+         - messaging service: -->
+    <script src="https://code.angularjs.org/1.3.0-rc.1/angular-messages.min.js"></script>
+    <!-- resources service -->
+    <script src="https://code.angularjs.org/1.3.0-rc.1/angular-resource.min.js"></script>
+
+    <script src="app2.js"></script>
+</head>
+<body><!--This tells angular which part of the view that the application lives.-->
+    <div class="container-fluid app-page">
+
+        <div class="container">
+            <!-- the mainController controls this div below. -->
+            <div ng-controller="mainController">
+                
+                <div>
+                    <label> Jina lako?</label>
+                    <!--ng-model here is used to say we want a specifc value to be bound to a specifc varable in the scope
+                        2 way binding: this variable here will affect the scope variable in the model and vice versa. -->
+                    <input type="text" ng-model="jina" />
+
+                    <!-- - Lets add some more directives. this is ng-if, that will display the html element it is set for if the value
+                           it is given is set to true. In this case we are comparing if the 'jina' length is greater than characters, where 
+                           characters == 5 in the scope. 
+                         - ng-class: this allows us to append a class to the class that is/ is not there based on a condition we give it in 
+                           json format. It also allows us to append additional classes based on more conditions. here we have appended different
+                           classes based on whether the lenght of jina is longer or shorter than characters. -->
+                    <div class="alert" 
+                         ng-class="{'alert-danger': jina.length > characters, 
+                                    'alert-warning': jina.length < characters}" 
+                         ng-hide="jina.length === characters">
+                            <div ng-show="jina.length < characters">
+                                The name is shorter than 5 characters.
+                            </div>
+                            <div ng-show="jina.length > characters">
+                                The name is more than 5 characters.
+                            </div>
+                    </div>
+
+                    <div class="alert" ng-if="jina.length !== characters">
+                        The name is not 5 characters long.
+                    </div>
+
+                    <!-- ng-show will show an element on a page if the value it is set to is again set to true. when false, that value's 
+                         display will be changed by css.  
+                    <div class="alert" ng-show="jina.length > characters">
+                        The name is longer than 5 characters.
+                    </div>
+                    -->
+                    
+                    <!-- ng-hide will not show an element on apage if the value it is set to is set to true. 
+                    <div class="alert" ng-hide="jina.length > characters">
+                        The name is longer than 5 characters.
+                    </div>
+                    -->
+                    
+                    <!-- ng-repeat gets us to repeat html elements based on how many items there are in the scope. -->
+                    <h3>Rules </h3>
+                    <ul>
+                        <li ng-repeat="rule in rules">{{rule.ruleName}}</li>
+                    </ul>
+                    
+                </div>
+
+                <hr />
+                <!-- using interpolation .. -->
+                <h1>twitter.com/{{lower_jina()}}</h1>
+                              
+                
+            </div>
+        </div>
+
+        
+        
+       <!-- <section ng-view>
+
+        </section> -->
+
+
+
+    </div>
+
+
+</div>
+</body>
+</html>
