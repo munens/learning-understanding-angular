@@ -1,8 +1,8 @@
-// section 4-
+// section 4-5: lecture 25
 
 var app = angular.module('app', []); 
 
-app.controller('mainController', ['$scope', '$filter', '$timeout', function($scope, $filter, $timeout){
+app.controller('mainController', ['$scope', '$filter', '$timeout', '$http', function($scope, $filter, $timeout, $http){
     // two way binding: the value of 'jina' here will affect the value of the variable 'jina', in the view and
     // the value of the variable in the 'view'' will affect the value of 'jina' in the model here.  
     $scope.jina = '';
@@ -54,6 +54,48 @@ app.controller('mainController', ['$scope', '$filter', '$timeout', function($sco
         {ruleName: "must sound cool"},
         {ruleName: "must be unique"}
     ]
+
+    $scope.alertClick = function(){
+        alert("hello");
+    }
+
+    var url = ""; 
+
+    /*
+    // building an XMLHttpRequest:
+    var rulesRequest = new XMLHttpRequest();
+    rulesRequest.onreadystatechange = function(){
+        $scope.$apply(function(){
+            if(rulesRequest == 4 && rulesRequest.status == 200){
+                $scope.rules = JSON.parse(rulesRequest.responseText);
+            }
+        })
+    }
+
+    rulesRequest.open("GET", url, true);
+    rulesRequest.send();
+    */
+
+    // the angular $http object is a wrapper for the code above and allows us to make http requests within the angular context:
+    $http.get(url)
+        .success(function(result){
+            $scope.rules = result;
+        })
+        .error(function(data, status){
+            console.log(data);
+        })
+
+    $scope.newRule = '';
+
+    $scope.addRule = function(){
+        $http.post(url, {newRule: $scope.newRule})
+            .success(function(result){
+                $scope.rules = result;
+            })
+            .error(function(data, success){
+                console.log(data)
+            })
+    }
 
 
 }]);

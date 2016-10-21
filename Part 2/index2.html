@@ -1,3 +1,4 @@
+<!-- section 4-5: lecture 25 -->
 <!DOCTYPE html>
 <!--section 1-4: lecture 17 -->
 <html lang="en-us" ng-app="app">
@@ -26,7 +27,6 @@
                     <!--ng-model here is used to say we want a specifc value to be bound to a specifc varable in the scope
                         2 way binding: this variable here will affect the scope variable in the model and vice versa. -->
                     <input type="text" ng-model="jina" />
-
                     <!-- - Lets add some more directives. this is ng-if, that will display the html element it is set for if the value
                            it is given is set to true. In this case we are comparing if the 'jina' length is greater than characters, where 
                            characters == 5 in the scope. 
@@ -48,6 +48,12 @@
                     <div class="alert" ng-if="jina.length !== characters">
                         The name is not 5 characters long.
                     </div>
+
+                    <!-- ngclick takes a function that will be called when this html element is clicked -->
+                    <button type="button" value="click me" ng-click="alertClick()"></button>
+
+                    <!-- ng-cloak is used when the javascript hasnt kicked in just before a page i loaded. -->
+                    <div ng-cloak >My name is: ... </div>
 
                     <!-- ng-show will show an element on a page if the value it is set to is again set to true. when false, that value's 
                          display will be changed by css.  
@@ -73,7 +79,9 @@
                 <hr />
                 <!-- using interpolation .. -->
                 <h1>twitter.com/{{lower_jina()}}</h1>
-                              
+
+                 Add rule: <input type="text" ng-model="newRule" />
+                 <button type= "button" value="Add" ng-click="addRule()"></button>             
                 
             </div>
         </div>
