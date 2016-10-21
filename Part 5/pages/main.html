@@ -1,0 +1,21 @@
+<label>Search</label>
+
+<input type="text" value="Doe" />
+<h3>Search results</h3>
+<!-- can displaty directive beloe as an html element -->
+<search-result></search-result>
+<!--Can also display directive below as an attribute. 
+        If the replace attrbute is set to true then the element wont appear as an element attribute.
+        If the replace attribute is set to false then the directive name will appear as an attribute. -->
+<div search-result></div>
+<!-- can also get the directive to appear as a class name as below. The class name will be appended at the beginning of the class name.
+     - this is not recommended by developers of angularjs and is not set by default. We would have to use 'C' as well in the restrict 
+       clause of the directive. -->
+<div class="search-result"></search-result>
+<!-- can also get the directive to appear despite it being commented out. This is denoted by the value 'M' in the restrict clause of 
+     the directive. -->
+<!-- directive: search-result -->
+
+<!-- template called from another file. -->
+<search-result-template></search-result-template>
+<div search-result-template></div>
