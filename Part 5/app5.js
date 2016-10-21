@@ -1,3 +1,4 @@
+// up to: Sec. 7 lec. 34
 var app = angular.module('app', ['ngRoute']);
 
 app.config(function ($routeProvider) {

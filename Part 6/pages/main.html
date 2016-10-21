@@ -1,0 +1,30 @@
+<label>Search</label>
+
+<input type="text" value="Doe" />
+<h3>Search results</h3>
+
+<!-- template called from another file. -->
+<search-result-template></search-result-template>
+<div search-result-template></div>
+
+<!-- If we would like to bind the scope of what is defined in the controller to what is in the directive, then we can set up
+     attributes for our directives as set below. In the directive scope variable setting the variables here defined below in
+     camel case will enable us to get what is defined in the controller. i.e. we we would set personName due to normalization 
+     whithin the scope object of the directive.
+       - -->
+<search-result-template
+        person-name="{{person.name}}" 
+        person-age="{{person.age}}"
+        person-obj="person"
+        formatted-address-function="formattedAddress(person)" >
+</search-result-template>
+
+
+<search-result-template person-obj="person"></search-result-template>
+
+<div class="list-group" ng-repeat="p in people">
+        <search-result person-obj="p" formatted-address-function="formattedAddress(p)"></search-result>
+</div>
+
+
+
